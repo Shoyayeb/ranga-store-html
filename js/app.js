@@ -6,7 +6,6 @@ const loadProducts = () => {
   // console.log(json);
 };
 
-
 // show all product in UI 
 const showProducts = (products) => {
   console.log(products);
@@ -15,18 +14,20 @@ const showProducts = (products) => {
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
+    // show details modals text
     div.innerHTML = `
     <div class="col ">
-    <div class="single-product rounded-3 card bg-light">
+    <div class="single-product rounded-3 card bg-white bg-opacity-10">
       <img class="card-img-top mx-auto imgCard" src=${image}></img>
       <div class="card-body">
-        <h3 class="card-title">${product.title.slice(0,60)}</h3>
+        <h4 class="card-title">${product.title.slice(0, 60)}</h4>
         <p>Category: ${product.category}</p>
-        <p>${product.description.slice(0, 50)}...</p>
       </div>
-      <div class="card-footer bg-light ">
-        <h2>Price: $ ${product.price}</h2>
+      <div class="card-footer bg-white">
+        <h3>Price: $ ${product.price}</h3>
         <div class="d-flex flex-column gap-3">
+          <div id="star${product.id}" class="d-flex justify-content-center">
+          </div>
           <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn"
             class="buy-now btn btn-success">add to cart</button>
           <button id="details-btn" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
@@ -35,8 +36,41 @@ const showProducts = (products) => {
     </div>
                 `;
     document.getElementById("all-products").appendChild(div);
+    addStar(Math.round(product.rating.rate), product.id, product.rating.count, product.rating.rate)
   }
 };
+function addStar(starCount, id, rateTotal,rateAvarage) {
+  const starid = 'star' + id;
+  let i = 0;
+  while (i < starCount) {
+    const star = document.createElement("div");
+    star.innerHTML = `
+    <i class="fas fa-star starred"></i>
+    `
+    document.getElementById(starid).appendChild(star);
+    i++;
+
+  }
+  // const staridd = document.getElementById(starid)
+  // console.log(staridd.childElementCount + ' ' + starid + ' ' + starCount);
+  const starOnWeb = document.getElementById(starid).childElementCount;
+  for (let i = starOnWeb; i < 5; i++) {
+    const noStar = document.createElement("div");
+    noStar.innerHTML = `
+    <i class="fas fa-star notStarred"></i>
+    `
+    document.getElementById(starid).appendChild(noStar);
+  }
+  // ratingCountShow(count)
+  const countOnWeb = document.createElement("div")
+  countOnWeb.innerHTML = `
+  <div> 
+    <p class="ms-1"> ${rateAvarage} (${rateTotal})</p>
+  </div>
+  
+  `
+  document.getElementById(starid).appendChild(countOnWeb);
+}
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
@@ -92,8 +126,7 @@ const updateTotal = () => {
 
 // resetting value to 0 when clicking buy button
 function resetValue() {
-  document.getElementById("login").style.display = "flex";
+  console.log("hi");
 }
-
 
 loadProducts();

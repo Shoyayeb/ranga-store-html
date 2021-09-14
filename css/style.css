@@ -3,8 +3,8 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 .imgCard {
-  height: 180px;
-  width: 180px !important;
+  height: 170px;
+  width: 150px !important;
 }
 #all-products {
   text-align: center;
@@ -15,7 +15,7 @@ body {
 .single-product {
   padding: 10px;
   transition: 0.6s;
-  min-height: 700px;
+  min-height: 600px;
 }
 .single-product:hover {
   box-shadow: 4px 4px 7px gray;
@@ -34,6 +34,12 @@ body {
 }
 .cart-main {
   padding-right: 30px;
+}
+.starred {
+  color: rgb(255, 191, 0);
+}
+.notStarred {
+  color: lightgray;
 }
 @media only screen and (max-width: 768px) {
   #all-products {
