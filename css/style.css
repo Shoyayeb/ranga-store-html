@@ -16,7 +16,9 @@ body {
   padding: 10px;
   transition: 0.6s;
   min-height: 600px;
+  /* filter: drop-shadow(16px 16px 10px black); */
 }
+
 .single-product:hover {
   box-shadow: 4px 4px 7px gray;
 }

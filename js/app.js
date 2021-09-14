@@ -17,13 +17,13 @@ const showProducts = (products) => {
     // show details modals text
     div.innerHTML = `
     <div class="col ">
-    <div class="single-product rounded-3 card bg-white bg-opacity-10">
+    <div class="single-product rounded-3 card bg-warning bg-opacity-10">
       <img class="card-img-top mx-auto imgCard" src=${image}></img>
       <div class="card-body">
         <h4 class="card-title">${product.title.slice(0, 60)}</h4>
         <p>Category: ${product.category}</p>
       </div>
-      <div class="card-footer bg-white">
+      <div class="card-footer ">
         <h3>Price: $ ${product.price}</h3>
         <div class="d-flex flex-column gap-3">
           <div id="star${product.id}" class="d-flex justify-content-center">
